@@ -170,11 +170,11 @@ vanillaSlideshow = {
 
 		// check if options is present
 	  	if(arguments && typeof arguments === "object") {
+	    	this.defaults.arrows = (arguments.arrows !== '') ? arguments.arrows : this.defaults.arrows;
+	    	this.defaults.indicators = (arguments.indicators !== '') ? arguments.indicators : this.defaults.indicators;
+	    	this.defaults.random = (arguments.random !== '') ? arguments.random : this.defaults.random;
+	    	this.defaults.slideshow = (arguments.slideshow !== '') ? arguments.slideshow : this.defaults.slideshow;
 	    	this.defaults.delay = (arguments.delay) ? arguments.delay : this.defaults.delay;
-	    	this.defaults.arrows = (arguments.arrows) ? arguments.arrows : this.defaults.arrows;
-	    	this.defaults.indicators = (arguments.indicators) ? arguments.indicators : this.defaults.indicators;
-	    	this.defaults.random = (arguments.random) ? arguments.random : this.defaults.random;
-	    	this.defaults.slideshow = (arguments.slideshow) ? arguments.slideshow : this.defaults.slideshow;
 	    	this.defaults.animationSpeed = (arguments.animationSpeed) ? arguments.animationSpeed : this.defaults.animationSpeed;
 	    }
 
@@ -191,7 +191,8 @@ vanillaSlideshow = {
 				document.getElementById(this.arrowPrevious).addEventListener('click', function() {
 					that.previousSlide();
 				});
-				document.getElementById('vanilla-arrows').style.display = 'block';
+				document.getElementById(this.arrowPrevious).style.display = 'block';
+				document.getElementById(this.arrowNext).style.display = 'block';
 			}
 
 			if(this.defaults.indicators) {
