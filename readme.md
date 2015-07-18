@@ -48,13 +48,11 @@ Required HTML
 
 	<div id="vanilla-indicators"></div>
 
-	<div id="vanilla-arrows">
-		<div id="vanilla-slideshow-previous">
-			<img src="images/arrow-previous.png" alt="slideshow arrow">
-		</div>
-		<div id="vanilla-slideshow-next">
-			<img src="images/arrow-next.png" alt="slideshow arrow">
-		</div>
+	<div id="vanilla-slideshow-previous">
+		<img src="images/arrow-previous.png" alt="slideshow arrow">
+	</div>
+	<div id="vanilla-slideshow-next">
+		<img src="images/arrow-next.png" alt="slideshow arrow">
 	</div>
 ````
 You can also use data-src and full path of image to display css background images
