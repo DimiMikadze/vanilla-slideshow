@@ -54,6 +54,7 @@ Required HTML
 	<div id="vanilla-slideshow-next">
 		<img src="images/arrow-next.png" alt="slideshow arrow">
 	</div>
+</div>	
 ````
 You can also use data-src and full path of image to display css background images
 
