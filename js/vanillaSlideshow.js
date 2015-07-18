@@ -1,7 +1,7 @@
 /*
  vanillaSlideshow v0.1
  (c) Dimitri Mikadze
- https://github.com/dimitrimikadze/vanila-slideshow
+ https://github.com/DimitriMikadze/vanilla-slideshow
  License: MIT
 */
 vanillaSlideshow = {
