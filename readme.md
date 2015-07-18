@@ -73,8 +73,8 @@ You can also use data-src and full path of image to display css background image
 	</div>
 ````
 
-1) include css/vanillaSlideshow.css
-2) include js/vanillaSlideshow.min.js Or js/vanillaSlideshow.js
+1. include css/vanillaSlideshow.css
+2. include js/vanillaSlideshow.min.js Or js/vanillaSlideshow.js
 
 after including javascript file initilize slideshow
 
