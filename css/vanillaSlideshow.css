@@ -57,13 +57,6 @@ html, body {
 
 /* Arrows */
 
-#vanilla-arrows { 
-	width: 100%;
-	z-index: 5; 
-	color: #fff; 
-	display: none;
-}
-
 #vanilla-slideshow-previous {
 	position: absolute;
 	left: 10px;
@@ -74,6 +67,7 @@ html, body {
 	cursor: pointer; 
 	opacity: 0.7;
 	z-index: 5; 
+	display: none;
 }
 
 #vanilla-slideshow-next {
@@ -86,6 +80,7 @@ html, body {
 	cursor: pointer; 	
 	opacity: 0.7;
 	z-index: 5; 
+	display: none;
 }
 
 #vanilla-slideshow-previous:hover, #vanilla-slideshow-next:hover {
