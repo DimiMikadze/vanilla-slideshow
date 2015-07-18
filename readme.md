@@ -1,6 +1,4 @@
-<snippet>
-  <content><![CDATA[
-# ${1:Vanilla Javascript CSS3 Fullscreen Responsive Slideshow}
+# Vanilla Javascript CSS3 Fullscreen Responsive Slideshow
 
 Easy to use Pure javascript and CSS3 Responsive Fullscreen Slideshow
 
@@ -128,6 +126,5 @@ To customize functionality pass object to init function
 
 See license.txt
 
-]]></content>
-  <tabTrigger>readme</tabTrigger>
+
 </snippet>
