@@ -208,7 +208,7 @@ vanillaSlideshow = {
 	// set browser vendor properties
 	setVendor: function(element, property, value) {
 	  element.style["webkit" + property] = value + ' ease-in-out';
-	  element.style["moz" + property] = value + ' ease-in-out';
+	  element.style["Moz" + property] = value + ' ease-in-out';
 	  element.style["ms" + property] = value + ' ease-in-out';
 	  element.style["o" + property] = value + ' ease-in-out';
 	},
