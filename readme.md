@@ -115,7 +115,9 @@ To customize functionality pass object to init function
 
 ## Bower
 
+````
 bower install vanilla-slideshow
+````
 
 ## Contributing
 
