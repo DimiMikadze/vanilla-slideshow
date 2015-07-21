@@ -1,0 +1,29 @@
+{
+  "name": "vanilla-slideshow",
+  "version": "0.1.0",
+  "description": "Vanilla Javascript CSS3 Fullscreen Responsive Slideshow",
+  "main": "vanillaSlideshow.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "Vanilla",
+    "Javascript",
+    "CSS3",
+    "Fullscreen",
+    "Responsive",
+    "Slideshow"
+  ],
+  "authors": [
+    "Dimitri Mikadze"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/DimitriMikadze/vanilla-slideshow",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
