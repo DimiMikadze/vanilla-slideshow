@@ -113,6 +113,10 @@ To customize functionality pass object to init function
 </script>
 ````
 
+## Bower
+
+bower install vanilla-slideshow
+
 ## Contributing
 
 1. Fork it
