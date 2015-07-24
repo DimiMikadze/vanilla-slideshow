@@ -30,18 +30,26 @@ Required HTML
 		
 		<div class="vanilla-slide">
 			<img src="images/tiger1.jpg" alt="tiger">
+
+			content here ...
 		</div>
 
 		<div class="vanilla-slide">
 			<img src="images/tiger2.jpg" alt="tiger">
+
+			content here ...
 		</div>
 		
 		<div class="vanilla-slide">
 			<img src="images/tiger3.jpg" alt="tiger">
+
+			content here ...
 		</div>
 		
 		<div class="vanilla-slide">
 			<img src="images/tiger4.jpg" alt="tiger">
+
+			content here ...
 		</div>
 
 	</div>
@@ -61,13 +69,13 @@ You can also use data-src and full path of image to display css background image
 ````
 	<div id="vanilla-slideshow">
 		
-		<div class="vanilla-slide" data-src="images/tiger1.jpg"></div>
+		<div class="vanilla-slide" data-src="images/tiger1.jpg">content here ...</div>
 
-		<div class="vanilla-slide" data-src="images/tiger2.jpg"></div>
+		<div class="vanilla-slide" data-src="images/tiger2.jpg">content here ...</div>
 		
-		<div class="vanilla-slide" data-src="images/tiger3.jpg"></div>
+		<div class="vanilla-slide" data-src="images/tiger3.jpg">content here ...</div>
 		
-		<div class="vanilla-slide" data-src="images/tiger4.jpg"></div>
+		<div class="vanilla-slide" data-src="images/tiger4.jpg">content here ...</div>
 
 	</div>
 ````
