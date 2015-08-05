@@ -12,7 +12,7 @@ Easy to use Pure javascript and CSS3 Responsive Fullscreen Slideshow
 
 ## Demo
 
-http://upmelab.com/demos/vanilla-slideshow
+http://dimitrimikadze.com/demos/vanilla-slideshow
 
 ## Getting Started
 
