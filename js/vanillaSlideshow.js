@@ -5,7 +5,7 @@
  License: MIT
 */
 var vanillaSlideshow = (function() {
-
+	
 	var app = {};
 
 	// default properties
@@ -154,7 +154,7 @@ var vanillaSlideshow = (function() {
 	// start slideshow
 	function _startSlideshow() {
 
-		intervalSliding = setInterval(function() {
+		app.intervalSliding = setInterval(function() {
 			_slideShow();
 		}, defaults.delay);
 	};
@@ -162,7 +162,7 @@ var vanillaSlideshow = (function() {
 	// stop slideshow
 	function _stopSlideshow() {
 
-		clearInterval(intervalSliding);
+		clearInterval(app.intervalSliding);
 	};
 
 	// set browser vendor properties
