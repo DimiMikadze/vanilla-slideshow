@@ -1,245 +1,248 @@
 /*
- vanillaSlideshow v0.1
+ vanillaSlideshow v0.2
  (c) Dimitri Mikadze
  https://github.com/DimitriMikadze/vanilla-slideshow
  License: MIT
 */
-vanillaSlideshow = {
+var vanillaSlideshow = (function() {
+
+	var app = {};
 
 	// default properties
-	defaults: {
+	var defaults = {
 		delay: 5000,
 		arrows: true,
 		indicators: true,
 		random: false,
 		slideshow: true,
 		animationSpeed: '1s'
-	},
+	}
 
 	// container divs
-	slideshowContainer: document.getElementById('vanilla-slideshow-container'),
-	slideshow: document.getElementById('vanilla-slideshow'),
-	slides: document.getElementById('vanilla-slideshow').getElementsByClassName('vanilla-slide'),
-	arrowPrevious: 'vanilla-slideshow-previous',
-	arrowNext: 'vanilla-slideshow-next',
-	indicatorsContainer: 'vanilla-indicators',
+	var slideshowContainer = document.getElementById('vanilla-slideshow-container');
+	var slideshow = document.getElementById('vanilla-slideshow');
+	var slides = document.getElementById('vanilla-slideshow').getElementsByClassName('vanilla-slide');
+	var arrowPrevious = 'vanilla-slideshow-previous';
+	var arrowNext = 'vanilla-slideshow-next';
+	var indicatorsContainer = 'vanilla-indicators';
 
 	// check properties
-	checkProperties: function() {
+	function _checkProperties() {
 
-		var random = (this.defaults.random) ? this.randomInt(0, this.slides.length - 1) : 0;
+		var random = (defaults.random) ? _randomInt(0, slides.length - 1) : 0;
 
-		for(var i=0; i<this.slides.length; i++) {
+		for(var i=0; i<slides.length; i++) {
 			
-			if(this.slides[i].getAttribute('data-src') !== null) {
-				this.slides[i].style.backgroundImage  = 'url( ' + this.slides[i].getAttribute('data-src') + ')';
+			if(slides[i].getAttribute('data-src') !== null) {
+				slides[i].style.backgroundImage  = 'url( ' + slides[i].getAttribute('data-src') + ')';
 			}
 
-			if(i === random) { this.slides[i].className += ' vanilla-active'; }
+			if(i === random) { slides[i].className += ' vanilla-active'; }
 
-			this.setVendor(this.slides[i], 'Transition', this.defaults.animationSpeed);
+			_setVendor(slides[i], 'Transition', defaults.animationSpeed);
 
 		}
 
-	},
+	};
 
 	// slideshow function
-	slideShow: function() {
+	function _slideShow() {
 
-		var active = document.querySelector('#' + this.slideshow.getAttribute('id') + ' .vanilla-active');
-		var next = (this.nextElement(active)) ? this.nextElement(active) : this.slides[0];
+		var active = document.querySelector('#' + slideshow.getAttribute('id') + ' .vanilla-active');
+		var next = (_nextElement(active)) ? _nextElement(active) : slides[0];
 
 		// classes
 		active.className = 'vanilla-slide';
 		next.className += ' vanilla-active';
 
 		// indicators
-		if(this.defaults.indicators) {
-			var activePointer = document.querySelector('#' + this.indicatorsContainer + ' .vanilla-active');
-			var nextPointer = (this.nextElement(activePointer)) ? this.nextElement(activePointer) : this.indicators[0];
+		if(defaults.indicators) {
+			var activePointer = document.querySelector('#' + indicatorsContainer + ' .vanilla-active');
+			var nextPointer = (_nextElement(activePointer)) ? _nextElement(activePointer) : app.indicators[0];
 			activePointer.className = activePointer.className.replace(/(?:^|\s)vanilla-active(?!\S)/g, '');
 			nextPointer.className += ' vanilla-active';		
 		}
 
-	},
+	};
 
 	// Previous slide
-	previousSlide: function() {
+	function _previousSlide() {
 
-		this.stopSlideshow();
+		_stopSlideshow();
 
-		var active = document.querySelector('#' + this.slideshow.getAttribute('id') + ' .vanilla-active');
-		var previous = (this.previousElement(active) ? this.previousElement(active) : this.slides[this.slides.length - 1]);
+		var active = document.querySelector('#' + slideshow.getAttribute('id') + ' .vanilla-active');
+		var previous = (_previousElement(active) ? _previousElement(active) : slides[slides.length - 1]);
 
 		// classes
 		active.className = 'vanilla-slide';
 		previous.className += ' vanilla-active';
 
 		// indicators
-		if(this.defaults.indicators) {
-			var activePointer = document.querySelector('#' + this.indicatorsContainer + ' .vanilla-active');
-			var nextPointer = (this.previousElement(activePointer)) ? this.previousElement(activePointer) : this.indicators[this.indicators.length - 1];
+		if(defaults.indicators) {
+			var activePointer = document.querySelector('#' + indicatorsContainer + ' .vanilla-active');
+			var nextPointer = (_previousElement(activePointer)) ? _previousElement(activePointer) : app.indicators[app.indicators.length - 1];
 			activePointer.className = activePointer.className.replace(/(?:^|\s)vanilla-active(?!\S)/g, '');
 			nextPointer.className += ' vanilla-active';		
 		}		
 		
-		if(this.defaults.slideshow) {
-			this.startSlideshow();
+		if(defaults.slideshow) {
+			_startSlideshow();
 		}
 	
-	},
-
-	// indicators click function
-	indicatorsClick: function(self) {
-			
-		this.stopSlideshow();
-		
-		// remove active classes
-		for(var i=0; i<this.slides.length; i++) {
-			if(this.hasClass(this.indicators[i], 'vanilla-active')) {
-				this.indicators[i].className = this.indicators[i].className.replace(/(?:^|\s)vanilla-active(?!\S)/g, '');
-			}	
-			if(this.hasClass(this.slides[i], 'vanilla-active')) {
-				this.slides[i].className = 'vanilla-slide';
-			}	
-		}
-
-		// add active class 
-		var i = Array.prototype.indexOf.call(this.indicators, self);
-		this.indicators[i].className += ' vanilla-active';
-
-		// add classes to slide
-		this.slides[i].className += ' vanilla-active';
-
-		if(this.defaults.slideshow) {
-			this.startSlideshow();
-		}
-
-	},
+	};
 
 	// Next slide
-	nextSlide: function() {
+	function _nextSlide() {
 		
-		this.stopSlideshow();
+		_stopSlideshow();
 
-		this.slideShow();
+		_slideShow();
 
-		if(this.defaults.slideshow) {
-			this.startSlideshow();
+		if(defaults.slideshow) {
+			_startSlideshow();
 		}
 
-	},
+	};
 
 	// create indicators and add event listeners
-	createIndicators: function() {
+	function _createIndicators() {
 
-		var that = this;
-		for(var i=0; i<this.slides.length; i++) {
+		for(var i=0; i<slides.length; i++) {
 			var node = document.createElement("div");
-			var indicators = document.getElementById(this.indicatorsContainer).appendChild(node);
+			var indicators = document.getElementById(indicatorsContainer).appendChild(node);
 			indicators.addEventListener("click", function() {
-				that.indicatorsClick(this);
+				_indicatorsClick(this);
 			});
-			indicators.className = this.indicatorsContainer;
-			if(this.hasClass(this.slides[i], 'vanilla-active')) {
+			indicators.className = indicatorsContainer;
+			if(_hasClass(slides[i], 'vanilla-active')) {
 				indicators.className += ' vanilla-active';
 			}
 		}
 
-		this.indicators = this.slideshowContainer.getElementsByClassName(this.indicatorsContainer);
+		app.indicators = slideshowContainer.getElementsByClassName(indicatorsContainer);
 
-	},
+	};
+
+	// indicators click function
+	function _indicatorsClick(self) {
+			
+		_stopSlideshow();
+		
+		// remove active classes
+		for(var i=0; i<slides.length; i++) {
+			if(_hasClass(app.indicators[i], 'vanilla-active')) {
+				app.indicators[i].className = app.indicators[i].className.replace(/(?:^|\s)vanilla-active(?!\S)/g, '');
+			}	
+			if(_hasClass(slides[i], 'vanilla-active')) {
+				slides[i].className = 'vanilla-slide';
+			}	
+		}
+
+		// add active class 
+		var i = Array.prototype.indexOf.call(app.indicators, self);
+		app.indicators[i].className += ' vanilla-active';
+
+		// add classes to slide
+		slides[i].className += ' vanilla-active';
+
+		if(defaults.slideshow) {
+			_startSlideshow();
+		}
+
+	};
 
 	// start slideshow
-	startSlideshow: function() {
+	function _startSlideshow() {
 
-		var that = this;
-		that.intervalSliding = setInterval(function() {
-			that.slideShow();
-		}, this.defaults.delay);
-	},
+		intervalSliding = setInterval(function() {
+			_slideShow();
+		}, defaults.delay);
+	};
 
 	// stop slideshow
-	stopSlideshow: function() {
+	function _stopSlideshow() {
 
-		clearInterval(this.intervalSliding);
-	},
-
-	// init function
-	init: function(arguments) {
-
-		// check if options is present
-	  	if(arguments && typeof arguments === "object") {
-	    	this.defaults.arrows = (arguments.arrows !== '') ? arguments.arrows : this.defaults.arrows;
-	    	this.defaults.indicators = (arguments.indicators !== '') ? arguments.indicators : this.defaults.indicators;
-	    	this.defaults.random = (arguments.random !== '') ? arguments.random : this.defaults.random;
-	    	this.defaults.slideshow = (arguments.slideshow !== '') ? arguments.slideshow : this.defaults.slideshow;
-	    	this.defaults.delay = (arguments.delay) ? arguments.delay : this.defaults.delay;
-	    	this.defaults.animationSpeed = (arguments.animationSpeed) ? arguments.animationSpeed : this.defaults.animationSpeed;
-	    }
-
-		this.checkProperties();
-
-		if(this.slides.length > 1) {
-			
-			if(this.defaults.arrows) {
-				
-				var that = this;
-				document.getElementById(this.arrowNext).addEventListener('click', function() {
-					that.nextSlide();
-				});	
-				document.getElementById(this.arrowPrevious).addEventListener('click', function() {
-					that.previousSlide();
-				});
-				document.getElementById(this.arrowPrevious).style.display = 'block';
-				document.getElementById(this.arrowNext).style.display = 'block';
-			}
-
-			if(this.defaults.indicators) {
-				this.createIndicators();
-			}
-			if(this.defaults.slideshow) {
-				this.startSlideshow();
-			}
-		}
-		
-	},
+		clearInterval(intervalSliding);
+	};
 
 	// set browser vendor properties
-	setVendor: function(element, property, value) {
+	function _setVendor(element, property, value) {
 	  element.style["webkit" + property] = value + ' ease-in-out';
 	  element.style["Moz" + property] = value + ' ease-in-out';
 	  element.style["ms" + property] = value + ' ease-in-out';
 	  element.style["o" + property] = value + ' ease-in-out';
-	},
+	};
 
 	// has class 
-	hasClass: function(element, cls) {
+	function _hasClass(element, cls) {
     	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
-	},
+	};
 
 	// Next element
-	nextElement: function(element) {
+	function _nextElement(element) {
 	    do {
 	        element = element.nextSibling;
 	    } while (element && element.nodeType !== 1);
 
 	    return element;        
-	},
+	};
 
 	// Previous element
-	previousElement: function(element) {
+	function _previousElement(element) {
 	    do {
 	        element = element.previousSibling;
 	    } while (element && element.nodeType !== 1);
 
 	    return element;  
-	},
+	};
 
 	// Random number
-	randomInt: function(min, max) {
+	function _randomInt(min, max) {
 
     	return Math.floor(Math.random() * (max - min + 1) + min);
-	}
+	};
 
-}
+	// init function
+	app.init = function(arguments) {
+
+		if( ! slideshowContainer) { return false; }
+
+		// check if options is present
+	  	if(arguments && typeof arguments === "object") {
+	    	defaults.arrows = (arguments.arrows !== '') ? arguments.arrows : defaults.arrows;
+	    	defaults.indicators = (arguments.indicators !== '') ? arguments.indicators : defaults.indicators;
+	    	defaults.random = (arguments.random !== '') ? arguments.random : defaults.random;
+	    	defaults.slideshow = (arguments.slideshow !== '') ? arguments.slideshow : defaults.slideshow;
+	    	defaults.delay = (arguments.delay) ? arguments.delay : defaults.delay;
+	    	defaults.animationSpeed = (arguments.animationSpeed) ? arguments.animationSpeed : defaults.animationSpeed;
+	    }
+
+		_checkProperties();
+		
+		if(slides.length > 1) {
+			
+			if(defaults.arrows) {
+
+				document.getElementById(arrowNext).addEventListener('click', function() {
+					_nextSlide();
+				});	
+				document.getElementById(arrowPrevious).addEventListener('click', function() {
+					_previousSlide();
+				});
+				document.getElementById(arrowPrevious).style.display = 'block';
+				document.getElementById(arrowNext).style.display = 'block';
+			}
+
+			if(defaults.indicators) {
+				_createIndicators();
+			}
+			if(defaults.slideshow) {
+				_startSlideshow();
+			}
+		}
+		
+	};
+
+	return app;
+
+}(vanillaSlideshow));
