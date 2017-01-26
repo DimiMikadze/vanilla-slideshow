@@ -10,10 +10,6 @@ Easy to use Pure javascript and CSS3 Responsive Fullscreen Slideshow
 - Fullscreen 
 - Easy to use
 
-## Demo
-
-http://dimitrimikadze.com/demos/vanilla-slideshow
-
 ## Getting Started
 
 Use the viewport meta tag to control layout on mobile browsers
