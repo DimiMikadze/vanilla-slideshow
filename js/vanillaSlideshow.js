@@ -202,6 +202,10 @@ var vanillaSlideshow = (function() {
     	return Math.floor(Math.random() * (max - min + 1) + min);
 	};
 
+	function _removeClass(element, clas) {
+		element.className  = element.className.split(clas).join('');
+	};
+
 	// init function
 	app.init = function(arguments) {
 
@@ -243,9 +247,28 @@ var vanillaSlideshow = (function() {
 		
 	};
 
-	// stop to public
-	app.stop = function() {
+	app.pause = function()
+	{
 		_stopSlideshow();
+	};
+
+	app.resume = function()
+	{
+		 _startSlideshow();
+	};
+
+	app.stop = function()
+	{
+		var active = document.querySelector('#' + slideshow.getAttribute('id') + ' .vanilla-active');
+		_removeClass(active, 'vanilla-active');
+		var first = document.querySelector('#' + slideshow.getAttribute('id') + ' .vanilla-slide');
+		first.className = first.className + " vanilla-active";
+	};
+
+	app.reset = function()
+	{
+		app.stop();
+		app.resume();
 	};
 
 	return app;
