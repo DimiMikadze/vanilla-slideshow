@@ -243,6 +243,11 @@ var vanillaSlideshow = (function() {
 		
 	};
 
+	// stop to public
+	app.stop = function() {
+		_stopSlideshow();
+	};
+
 	return app;
 
 }(vanillaSlideshow));
